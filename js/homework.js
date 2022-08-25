@@ -69,18 +69,40 @@ function getMovieInfo(movieName){
                 runtime: 157,
                 description: 'Good vs Evil'
             }
-            resolve(movie)
+            resolve(`${movie.title} directed by ${movie.director}. A story of ${movie.description} that runs for ${movie.runtime}`)
         } else {
             reject(`${movieName} cannot be accessed because it is too short.`)
         }
     })
 }
 
+function printMovieInfo(movieName){
+    getMovieInfo(movieName)
+    .then(movie => console.log(movie))
+    .catch(error => console.warn(error))
+}
 
 // Example 1
-// printMovieInfo('Indiana Jones and the Dark Knight')
+printMovieInfo('Indiana Jones and the Dark Knight')
 // Output: Indiana Jones and the Dark Knight directed by Christopher Spielberg. A story of Good vs Evil that runs for 157 minutes.
 
+
 // Example 2
-// printMovieInfo('ET')
+printMovieInfo('ET')
 // Output: *Warning* ET cannot be accessed because it it too short
+
+
+//////      SUCCESS         //////
+
+
+
+// Async/await.....
+
+// async function printMovie(movieName){
+//     let movie = await getMovieInfo(movieName)
+//     console.log(movie)
+// }
+// printMovie('Indiana Jones and the Dark Knight')
+
+// I tried looking up how to throw an error if the movie.lenght is < 5
+// I found (throw new Error()) but couldn't figure out where to put that...
