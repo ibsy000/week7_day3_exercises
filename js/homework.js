@@ -69,16 +69,17 @@ function getMovieInfo(movieName){
                 runtime: 157,
                 description: 'Good vs Evil'
             }
-            resolve(`${movie.title} directed by ${movie.director}. A story of ${movie.description} that runs for ${movie.runtime}`)
+            resolve(movie)
         } else {
             reject(`${movieName} cannot be accessed because it is too short.`)
         }
     })
 }
 
+
 function printMovieInfo(movieName){
     getMovieInfo(movieName)
-    .then(movie => console.log(movie))
+    .then(movie => console.log(`${movie.title} directed by ${movie.director}. A story of ${movie.description} that runs for ${movie.runtime} minutes.`))
     .catch(error => console.warn(error))
 }
 
